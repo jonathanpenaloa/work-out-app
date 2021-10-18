@@ -15,4 +15,5 @@ exports.workouts = [
     {id: 14, name: 'Cable Delt Pull', category: 'BACK'},
     {id: 15, name: 'Wide Row To External', category: 'BACK'},
     {id: 16, name: 'Back-Raise ', category: 'BACK'}
-]
+];
+

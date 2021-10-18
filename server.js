@@ -12,8 +12,8 @@ require('./config/database');
 require('./config/passport');
 
 
-var indexRouter = require('./routes/index');
-var workoutsRouter = require('./routes/workouts');
+const indexRouter = require('./routes/index');
+const workoutsRouter = require('./routes/workouts');
 
 var app = express();
 
