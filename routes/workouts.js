@@ -1,10 +1,14 @@
-var express = require('express');
-var router = express.Router();
-var workoutsCtrl = require('../controllers/workouts');
+const express = require('express');
+const router = express.Router();
+const workoutsCtrl = require('../controllers/workouts');
 
 router.get('/', workoutsCtrl.index);
 
-//new code to arms page
-router.get('/arm', workoutsCtrl.arm);
+router.get('/:id', workoutsCtrl.show);
+
+
+//new code to My work out plan page
+
+// router.get('/new', workoutsCtrl.new);
 
 module.exports = router;

@@ -2,14 +2,15 @@ const Workout = require('../models/workout');
 
 module.exports = {
     index,
-    arm,
+    show,
 };
 
-function arm(req, res) {
-    Workout.find({}, function(err, arm) {
-        res.render('/arm/index', {title: "Arm workouts", arm} );
-    });
+
+
+function show(req, res) {
+ res.render('workouts/plan', { title: 'My work out', plan})
 }
+
 
 function index(req, res) {
     Workout.find({}, function(err, workouts) {
