@@ -1,35 +1,51 @@
 <%- include('../partials/header') %>
 
-<h1>Today's Workouts</h1>
 
-<section>
-    <ul>
-    <% plan.notes.forEach(function(n) { %>
-            <li >
-                <%= n.content %>
-            </li>
-        <% }); %>
-     </ul>
-</section>
-
-<section>
-    <div>
-        <form method="POST" action="/plans/<%= plan._id %>/notes">
-            <input name="content"> <input type="submit" value="Add note">
-        </form>
+<div>
+    <section id="notes">
+        <ul>
+            <% plan.notes.forEach(function(n) { %>
+                <li data-notesid="<%= n._id %>">
+                    <%= n.content %> 
+                    <div id="<%= n._id %>-div"> 
+                        <button id="<%= n._id %>" class="update-button">update note</button>
+                    </div>
+                    <form method="POST" action="/notes/<%= n._id %>?_method=DELETE">
+                        <input type="submit" value="x">
+                    </form>
+                </li>
+                <% }); %>
+            </ul>
+        </section>
     </div>
-</section>
+    
+    <section>
+        <div>
+            <form method="POST" action="/plans/<%= plan._id %>/notes">
+                <input name="content"> <input type="submit" value="Add note">
+            </form>
+        </div>
+    </section>
+    
+    <section>
+        <h2>Today's Workouts</h2>
+        <% plan.workouts.forEach(function(w) { %>
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item">
+                    <%= w.category %> |&nbsp 
+                    <%= w.name %> <form method="POST" action="/workouts/<%= w._id %>?_method=DELETE">
+                        <button class="btn btn-success" type="submit">DONE</button></form>
+                    </li>
+                </ul>
+                <% }); %>
+            </section>
 
-<section>
-    <% plan.workouts.forEach(function(w) { %>
-        <ul class="list-group list-group-flush">
-            <li class="list-group-item">
-                <%= w.category %> |&nbsp 
-                <%= w.name %> <form method="POST" action="/workouts/<%= w._id %>?_method=DELETE">
-                    <button class="btn btn-success" type="submit">DONE</button></form>
-            </li>
-        </ul>
-      <% }); %>
-</section>
+<script>
+    document.getElementById('notes').addEventListener('click', fuction(evt) {
+        const notesID = evt.target.id
+    });
 
+
+
+</script>
 <%- include('../partials/footer') %>

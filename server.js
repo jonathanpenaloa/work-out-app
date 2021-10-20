@@ -7,6 +7,8 @@ const methodOverride = require('method-override');
 const session = require('express-session');
 const passport = require('passport');
 
+const isLoggedIn = require('./config/auth')
+
 require('dotenv').config();
 require('./config/database');
 require('./config/passport');
@@ -49,7 +51,7 @@ app.use(function(req, res, next) {
 app.use('/', indexRouter);
 app.use('/workouts', workoutsRouter);
 
-app.use('/', plansRouter);
+app.use('/', isLoggedIn, plansRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

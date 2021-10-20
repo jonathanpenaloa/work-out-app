@@ -9,6 +9,7 @@ router.get('/myplan', plansCtrl.show);
 
 router.post('/plans/:id/notes', plansCtrl.createNote);
 
+router.delete('/notes/:id', plansCtrl.deleteNote);
 
 module.exports = router;
 

@@ -36,6 +36,17 @@ li {
 }
 
 h1 {
+  /* font-family: 'Bangers', cursive; */
   text-align: center;
   font-size: 10px;
+}
+
+h2 {
+  font-family: 'Bangers', cursive;
+  font-size: 10px;
+
+}
+
+div {
+  justify-content: left;
 }

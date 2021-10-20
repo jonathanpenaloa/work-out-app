@@ -4,7 +4,23 @@ const Workout = require('../models/workout');
 module.exports = {
   show,
   createNote,
+  deleteNote,
+  updateNote
 
+}
+
+function updateNote(req, res) {
+
+}
+
+function deleteNote(req, res) {
+  Plan.findOne({'notes._id': req.params.id, 'notes.user': req.user._id}, function(err, plan) {
+    if (!plan || err) return res.redirect('/myplan');
+    plan.notes.remove(req.params.id);
+    plan.save(function(err) {
+      res.redirect('/myplan');
+    });
+  });
 }
 
 
