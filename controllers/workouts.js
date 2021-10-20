@@ -1,15 +1,40 @@
+const Plan = require('../models/plan');
 const Workout = require('../models/workout');
 
 module.exports = {
     index,
-    show,
+    // show,
+    addToPlan,
+    delete: deleteWorkout
+
 };
 
-
-
-function show(req, res) {
- res.render('workouts/plan', { title: 'My work out', plan})
+function deleteWorkout(req, res) {
+    Plan.findOne({user: req.user._id}, function(err, plan) {
+      plan.workouts.remove(req.params.id);
+      plan.save(function(err) {
+        res.redirect('/myplan');
+      });
+    });
 }
+
+function addToPlan(req, res) {
+    Plan.findOne({user: req.user._id}, function (err, plan) {
+        const exists = plan.workouts.some(w => w.equals(req.params.id)); 
+        if (exists) return res.redirect('/workouts');
+        plan.workouts.push(req.params.id);
+        plan.save(function (err) {
+            console.log(req.params.id);
+            res.redirect(`/myplan`);
+        });
+    });
+}
+
+
+
+// function show(req, res) {
+//  res.render('workouts/plan', { title: 'My work out', plan})
+// }
 
 
 function index(req, res) {

@@ -4,8 +4,11 @@ const plansCtrl = require('../controllers/plans');
 
 // router.get('/', plansCtrl.index);
 
-router.get('/', plansCtrl.show);
+router.get('/myplan', plansCtrl.show);
+
+
 
 
 
 module.exports = router;
+

@@ -1,8 +1,17 @@
 <%- include('../partials/header') %>
 
-<h2>My work outs</h2>
+<h1>My work outs for today</h1>
 <section>
-<input type="text" name="" id="">
+<tbody>
+    <% plan.workouts.forEach(function(w) { %>
+    <tr>
+        <li>
+            <%= w.category %> |&nbsp 
+            <%= w.name %> <form method="POST" action="/workouts/<%= w._id %>?_method=DELETE"><button type="submit">DONE</button></form>
+        </li>
+    </tr>
+      <% }); %>
+</tbody>
 </section>
 
 <%- include('../partials/footer') %>

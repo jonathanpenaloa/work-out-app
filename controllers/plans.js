@@ -1,5 +1,5 @@
 const Plan = require('../models/plan');
-const workout = require('../models/workout');
+const Workout = require('../models/workout');
 
 module.exports = {
   show,
@@ -7,9 +7,10 @@ module.exports = {
 }
 
 
-function show(req,res) {
- Plan.find({}, function(err, plan) {
-     res.render('plans/show', {title: 'My work out'});
- });
- }
+function show(req, res) {
+
+  Plan.findOne({user: req.user._id}).populate('workouts').exec(function (err, plan) {
+    res.render('plans/show', { title: "My work out plan", plan: plan});
+  });
+}
 

@@ -1,14 +1,15 @@
 <%- include('../partials/header') %>
-<form method="POST" action="/plans">
 <tbody>
     <% workouts.forEach(function(w) { %>
     <tr>
         <li class="accordion" id="accordionExample">
             <%= w.category %> |&nbsp
-            <%= w.name %>&nbsp&nbsp&nbsp<input type="submit" value="ADD WORKOUT">
+            <%= w.name %>&nbsp&nbsp&nbsp
+            <form action="/workouts/<%= w._id %>/plan" method="POST">
+                <input type="submit" value="ADD WORKOUT">
+            </form>
         </li>
     </tr>
       <% }); %>
 </tbody>
-</form>
 <%- include('../partials/footer') %>
