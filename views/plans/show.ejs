@@ -1,17 +1,35 @@
 <%- include('../partials/header') %>
 
-<h1>My work outs for today</h1>
+<h1>Today's Workouts</h1>
+
 <section>
-<tbody>
+    <ul>
+    <% plan.notes.forEach(function(n) { %>
+            <li >
+                <%= n.content %>
+            </li>
+        <% }); %>
+     </ul>
+</section>
+
+<section>
+    <div>
+        <form method="POST" action="/plans/<%= plan._id %>/notes">
+            <input name="content"> <input type="submit" value="Add note">
+        </form>
+    </div>
+</section>
+
+<section>
     <% plan.workouts.forEach(function(w) { %>
-    <tr>
-        <li>
-            <%= w.category %> |&nbsp 
-            <%= w.name %> <form method="POST" action="/workouts/<%= w._id %>?_method=DELETE"><button type="submit">DONE</button></form>
-        </li>
-    </tr>
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item">
+                <%= w.category %> |&nbsp 
+                <%= w.name %> <form method="POST" action="/workouts/<%= w._id %>?_method=DELETE">
+                    <button class="btn btn-success" type="submit">DONE</button></form>
+            </li>
+        </ul>
       <% }); %>
-</tbody>
 </section>
 
 <%- include('../partials/footer') %>

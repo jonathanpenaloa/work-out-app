@@ -2,13 +2,17 @@
 <tbody>
     <% workouts.forEach(function(w) { %>
     <tr>
-        <li class="accordion" id="accordionExample">
-            <%= w.category %> |&nbsp
-            <%= w.name %>&nbsp&nbsp&nbsp
-            <form action="/workouts/<%= w._id %>/plan" method="POST">
-                <input type="submit" value="ADD WORKOUT">
-            </form>
-        </li>
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item">
+                <%= w.category %> |&nbsp
+                <%= w.name %>&nbsp&nbsp&nbsp
+                <% if(user) { %>
+                <form action="/workouts/<%= w._id %>/plan" method="POST">
+                    <input class="btn btn-warning" type="submit" value="ADD WORKOUT">
+                </form>
+                <% } %>
+            </li>
+        </ul>   
     </tr>
       <% }); %>
 </tbody>
