@@ -1,48 +1,49 @@
 <%- include('../partials/header') %>
 
 
-<div>
-    <section class="col-6" id="notes">
+<main id="plan-show">
+    <section id="left">
+        <h2>Your notes today</h2>
+        <form method="POST" action="/plans/<%= plan._id %>/notes">
+            <input name="content"> <input type="submit" value="Add note">
+        </form>
         <ul>
             <% plan.notes.forEach(function(n) { %>
                 <li>
-                    <div id="<%= n._id %>-div"> 
-                            <%= n.content %> 
+                    <div class="note-content" id="<%= n._id %>-div"> 
+                        <p><%= n.content %></p>
+                        <div>
                             <button id="<%= n._id %>-<%= n.content %>" class="update-button">update note</button>
                             <form method="POST" action="/notes/<%= n._id %>?_method=DELETE">
                                 <input type="submit" value="x">
                             </form>
+                        </div>
                     </div>
                 </li>
             <% }); %>
         </ul>
+
     </section>
-    
-    <div class="row">
-        <div class="col-6 text-center">
+    <section id="right">
+            <h2>Today's Workouts</h2>
             <div>
-            <form method="POST" action="/plans/<%= plan._id %>/notes">
-                <input name="content"> <input type="submit" value="Add note">
-            </form>
-    </div>
-</div>
-    
-<div class="col-6">
-    <h2>Today's Workouts</h2>
-        <% plan.workouts.forEach(function(w) { %>
-            <ul >
-                <li>
-                    <%= w.category %> |&nbsp 
-                    <%= w.name %> <form method="POST" action="/workouts/<%= w._id %>?_method=DELETE">
-                    <button class="btn btn-success btn-sm" type="submit">DONE</button></form>
-                </li>
-            </ul>
-         <% }); %> 
-</div>
+                <ul>
+                <% plan.workouts.forEach(function(w) { %>
+                    <li class="workout-plan">
+                        <p><%= w.category %> |&nbsp <%= w.name %></p>
+                        <form method="POST" action="/workouts/<%= w._id %>?_method=DELETE">
+                            <button class="btn btn-success btn-sm" type="submit">DONE</button>
+                        </form>
+                    </li>
+                <% }); %> 
+                </ul>
+            </div>
+    </section>
+</main>
 
 <script>
     
-    document.getElementById('notes').addEventListener('click', function(evt) {
+    document.getElementById('left').addEventListener('click', function(evt) {
         //make sure you click on the esit button, otherwise return
         if(!evt.target.classList.contains('update-button')) return;
         //grab notes ID from first half od id

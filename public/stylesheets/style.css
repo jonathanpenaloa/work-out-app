@@ -53,6 +53,39 @@ h2 {
   text-align: center;
 }
 
-div {
+#plan-show {
+  display: flex;
+}
+
+#left {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  width: 48vw;
+}
+
+
+.note-content {
+  display: flex;
+  flex-direction: column;
+  margin: 2vmin;
+}
+
+.note-content div {
+  display: flex;
   justify-content: center;
+}
+
+.note-content p {
+  margin: 0;
+}
+
+.workout-plan {
+  display: flex;
+  justify-content: space-between;
+  margin: 2vmin;
+}
+
+#right {
+  width: 48vw;
 }
