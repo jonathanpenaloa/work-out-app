@@ -39,10 +39,11 @@ function show(req, res) {
 }
 
 function updateNote(req, res) {
-  Plan.findById({'note._id': req.params.id}, function(err) {
-    plan.note.id(req.params.id);
+  Plan.findOne({'notes._id': req.params.id}, function(err, plan) {
+    const note = plan.notes.id(req.params.id);
+    note.content = req.body.content;
     plan.save(function(err) {
-      res.render(`/myplan${note._id}`);
+      res.redirect('/myplan');
     });
   });
 }

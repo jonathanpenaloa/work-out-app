@@ -5,14 +5,14 @@
     <section class="col-6" id="notes">
         <ul>
             <% plan.notes.forEach(function(n) { %>
-                <li data-notesid="<%= n._id %>">
-                    <%= n.content %> 
-                        <div id="<%= n._id %>-div"> 
-                            <button id="<%= n._id %>" class="update-button">update note</button>
-                        </div>
-                    <form method="POST" action="/notes/<%= n._id %>?_method=DELETE">
-                        <input type="submit" value="x">
-                    </form>
+                <li>
+                    <div id="<%= n._id %>-div"> 
+                            <%= n.content %> 
+                            <button id="<%= n._id %>-<%= n.content %>" class="update-button">update note</button>
+                            <form method="POST" action="/notes/<%= n._id %>?_method=DELETE">
+                                <input type="submit" value="x">
+                            </form>
+                    </div>
                 </li>
             <% }); %>
         </ul>
@@ -41,8 +41,24 @@
 </div>
 
 <script>
-    document.getElementById('notes').addEventListener('click', fuction(evt) {
-        const notesID = evt.target.id
+    
+    document.getElementById('notes').addEventListener('click', function(evt) {
+        //make sure you click on the esit button, otherwise return
+        if(!evt.target.classList.contains('update-button')) return;
+        //grab notes ID from first half od id
+        const noteID = evt.target.id.split('-')[0]
+        //grab note content from second half of id
+        const noteContent = evt.target.id.split('-')[1]
+        //create the edit form as a template
+        const template = `
+        <form action="/notes/${noteID}?_method=PUT" method="POST">
+            <input type="text" name="content" value="${noteContent}">
+            <input type="submit" value="confirm Edit">
+        </form>
+        <a href="/myplan">cancel</a>
+        `;
+        //replce original "edit" button with working update form
+        document.getElementById(`${noteID}-div`).innerHTML = template;
     });
 </script>
 
