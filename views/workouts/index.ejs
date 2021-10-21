@@ -1,19 +1,20 @@
 <%- include('../partials/header') %>
-<tbody>
+<div class="row"> 
     <% workouts.forEach(function(w) { %>
-    <tr>
-        <ul class="list-group list-group-flush">
-            <li class="list-group-item">
+       <div class="col-4">
+        <ul>
+            <li >
                 <%= w.category %> |&nbsp
                 <%= w.name %>&nbsp&nbsp&nbsp
                 <% if(user) { %>
                 <form action="/workouts/<%= w._id %>/plan" method="POST">
-                    <input class="btn btn-warning" type="submit" value="ADD WORKOUT">
+                    <input class="btn btn-warning btn-sm" type="submit" value="ADD WORKOUT">
                 </form>
                 <% } %>
             </li>
         </ul>   
-    </tr>
-      <% }); %>
-</tbody>
+     </div>
+        <% }); %>
+</div>
+
 <%- include('../partials/footer') %>

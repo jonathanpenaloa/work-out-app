@@ -11,5 +11,7 @@ router.post('/plans/:id/notes', plansCtrl.createNote);
 
 router.delete('/notes/:id', plansCtrl.deleteNote);
 
+router.put('/notes/:id', plansCtrl.updateNote);
+
 module.exports = router;
 
