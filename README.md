@@ -23,7 +23,10 @@
 - #### MongoBD
 - #### Bootstrap CSS
 
-[link to the Workout App](https://work-out-app-sei.herokuapp.com/)
+[link to the Workout App](https://work-out-app-sei.herokuapp.com)
+
+
+[link to the trello](https://trello.com/b/1ft0qKqF/work-out-app)
 
 ## Futuer Enhancements:
 
