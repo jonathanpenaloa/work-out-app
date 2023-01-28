@@ -1,6 +1,6 @@
 # Workout App
 
-### If you're new to working out and don't know where to start, search the list of work outs I have provided and creat a work out you can follow for the day!
+### If you're new to working out and don't know where to start - search the list of work outs I provided and create a workout plan you can follow for the day!
 <br>
 
 ## Screenshot of Home page:
